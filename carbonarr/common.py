@@ -4,7 +4,7 @@
 def hello_world(name):
     """Prints "Hello World!" to the console.
     """
-    name = input()
+    
     print("Hello World!"+" "+name)
 
 
