@@ -1,5 +1,4 @@
 numpy
 ipyleaflet
-json
 shapely
 geopandas
