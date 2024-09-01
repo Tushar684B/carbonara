@@ -86,3 +86,32 @@ class Map(ipyleaflet.Map):
         # Create a GeoJSON layer and add it to the map
         geo_json = GeoJSON(data=data, **kwargs)
         self.add(geo_json)
+class ARR:
+    """A class to extract and display Esri LULC maps for 2021 and 2023.
+
+    This class uses Esri LULC map data to visualize land use and land cover changes over time on a map.
+    """
+
+    def __init__(self, map_instance):
+        """Initializes the ARR class with a given map instance.
+
+        Args:
+            map_instance (Map): An instance of the Map class where the layers will be displayed.
+        """
+        self.map = map_instance
+
+    def add_lulc_layer(self, year):
+        """Adds an Esri LULC map layer for a specific year to the map.
+
+        Args:
+            year (int): The year of the LULC map (e.g., 2021 or 2023).
+        """
+        url_template = f"https://services.arcgisonline.com/arcgis/rest/services/ESRI_LandCover_{year}/MapServer/tile/{{z}}/{{y}}/{{x}}"
+        name = f"Esri LULC {year}"
+        self.map.add_tile_layer(url=url_template, name=name)
+
+    def show_lulc_maps(self):
+        """Adds Esri LULC map layers for 2021 and 2023 to the map."""
+        self.add_lulc_layer(2021)
+        self.add_lulc_layer(2023)
+        self.map.add_layers_control()
