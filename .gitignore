@@ -4,6 +4,7 @@ private/
 *.py[cod]
 *$py.class
 *.json
+*.geojson
 
 # C extensions
 *.so
