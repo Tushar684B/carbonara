@@ -1,3 +1,1 @@
-    """
-    Contains utilities to the function carbonarr
-    """
+"""Contains utilities to the function carbonarr"""
