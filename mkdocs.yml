@@ -87,3 +87,4 @@ nav:
     - API Reference:
           - carbonarr module: carbonarr.md
           - common module: common.md
+          - common module: utils.md
