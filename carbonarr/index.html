@@ -561,6 +561,48 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#carbonarr.carbonarr.ARR" class="md-nav__link">
+    <span class="md-ellipsis">
+      ARR
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ARR">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#carbonarr.carbonarr.ARR.__init__" class="md-nav__link">
+    <span class="md-ellipsis">
+      __init__()
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#carbonarr.carbonarr.ARR.add_lulc_layer" class="md-nav__link">
+    <span class="md-ellipsis">
+      add_lulc_layer()
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#carbonarr.carbonarr.ARR.show_lulc_maps" class="md-nav__link">
+    <span class="md-ellipsis">
+      show_lulc_maps()
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#carbonarr.carbonarr.Map" class="md-nav__link">
     <span class="md-ellipsis">
       Map
@@ -702,6 +744,48 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#carbonarr.carbonarr.ARR" class="md-nav__link">
+    <span class="md-ellipsis">
+      ARR
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ARR">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#carbonarr.carbonarr.ARR.__init__" class="md-nav__link">
+    <span class="md-ellipsis">
+      __init__()
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#carbonarr.carbonarr.ARR.add_lulc_layer" class="md-nav__link">
+    <span class="md-ellipsis">
+      add_lulc_layer()
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#carbonarr.carbonarr.ARR.show_lulc_maps" class="md-nav__link">
+    <span class="md-ellipsis">
+      show_lulc_maps()
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#carbonarr.carbonarr.Map" class="md-nav__link">
     <span class="md-ellipsis">
       Map
@@ -807,6 +891,213 @@
 
 
 
+
+
+
+  <div class="doc doc-object doc-class">
+
+
+
+<h2 id="carbonarr.carbonarr.ARR" class="doc doc-heading">
+        <code>
+ARR        </code>
+
+
+
+<a href="#carbonarr.carbonarr.ARR" class="headerlink" title="Permanent link">&para;</a></h2>
+
+    <div class="doc doc-contents ">
+
+      <p>A class to extract and display Esri LULC maps for 2021 and 2023.</p>
+<p>This class uses Esri LULC map data to visualize land use and land cover changes over time on a map.</p>
+
+        <details class="quote">
+          <summary>Source code in <code>carbonarr/carbonarr.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">ARR</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;A class to extract and display Esri LULC maps for 2021 and 2023.</span>
+
+<span class="sd">    This class uses Esri LULC map data to visualize land use and land cover changes over time on a map.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">map_instance</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Initializes the ARR class with a given map instance.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            map_instance (Map): An instance of the Map class where the layers will be displayed.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">map</span> <span class="o">=</span> <span class="n">map_instance</span>
+
+    <span class="k">def</span> <span class="nf">add_lulc_layer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">year</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Adds an Esri LULC map layer for a specific year to the map.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            year (int): The year of the LULC map (e.g., 2021 or 2023).</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">url_template</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;https://services.arcgisonline.com/arcgis/rest/services/ESRI_LandCover_</span><span class="si">{</span><span class="n">year</span><span class="si">}</span><span class="s2">/MapServer/tile/</span><span class="se">{{</span><span class="s2">z</span><span class="se">}}</span><span class="s2">/</span><span class="se">{{</span><span class="s2">y</span><span class="se">}}</span><span class="s2">/</span><span class="se">{{</span><span class="s2">x</span><span class="se">}}</span><span class="s2">&quot;</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;Esri LULC </span><span class="si">{</span><span class="n">year</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">map</span><span class="o">.</span><span class="n">add_tile_layer</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">url_template</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">show_lulc_maps</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Adds Esri LULC map layers for 2021 and 2023 to the map.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_lulc_layer</span><span class="p">(</span><span class="mi">2021</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_lulc_layer</span><span class="p">(</span><span class="mi">2023</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">map</span><span class="o">.</span><span class="n">add_layers_control</span><span class="p">()</span>
+</code></pre></div>
+        </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+  <div class="doc doc-object doc-method">
+
+
+
+<h3 id="carbonarr.carbonarr.ARR.__init__" class="doc doc-heading">
+<code class="highlight language-python"><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">map_instance</span><span class="p">)</span></code>
+
+  <span class="doc doc-properties">
+      <small class="doc doc-property doc-property-special"><code>special</code></small>
+  </span>
+
+<a href="#carbonarr.carbonarr.ARR.__init__" class="headerlink" title="Permanent link">&para;</a></h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Initializes the ARR class with a given map instance.</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>map_instance</code></td>
+        <td><code>Map</code></td>
+        <td><p>An instance of the Map class where the layers will be displayed.</p></td>
+        <td><em>required</em></td>
+      </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>carbonarr/carbonarr.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">map_instance</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Initializes the ARR class with a given map instance.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        map_instance (Map): An instance of the Map class where the layers will be displayed.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">map</span> <span class="o">=</span> <span class="n">map_instance</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-method">
+
+
+
+<h3 id="carbonarr.carbonarr.ARR.add_lulc_layer" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">add_lulc_layer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">year</span><span class="p">)</span></code>
+
+
+<a href="#carbonarr.carbonarr.ARR.add_lulc_layer" class="headerlink" title="Permanent link">&para;</a></h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Adds an Esri LULC map layer for a specific year to the map.</p>
+
+<p><strong>Parameters:</strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Default</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td><code>year</code></td>
+        <td><code>int</code></td>
+        <td><p>The year of the LULC map (e.g., 2021 or 2023).</p></td>
+        <td><em>required</em></td>
+      </tr>
+  </tbody>
+</table>
+        <details class="quote">
+          <summary>Source code in <code>carbonarr/carbonarr.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">add_lulc_layer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">year</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Adds an Esri LULC map layer for a specific year to the map.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        year (int): The year of the LULC map (e.g., 2021 or 2023).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">url_template</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;https://services.arcgisonline.com/arcgis/rest/services/ESRI_LandCover_</span><span class="si">{</span><span class="n">year</span><span class="si">}</span><span class="s2">/MapServer/tile/</span><span class="se">{{</span><span class="s2">z</span><span class="se">}}</span><span class="s2">/</span><span class="se">{{</span><span class="s2">y</span><span class="se">}}</span><span class="s2">/</span><span class="se">{{</span><span class="s2">x</span><span class="se">}}</span><span class="s2">&quot;</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;Esri LULC </span><span class="si">{</span><span class="n">year</span><span class="si">}</span><span class="s2">&quot;</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">map</span><span class="o">.</span><span class="n">add_tile_layer</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">url_template</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+  <div class="doc doc-object doc-method">
+
+
+
+<h3 id="carbonarr.carbonarr.ARR.show_lulc_maps" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">show_lulc_maps</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span></code>
+
+
+<a href="#carbonarr.carbonarr.ARR.show_lulc_maps" class="headerlink" title="Permanent link">&para;</a></h3>
+
+    <div class="doc doc-contents ">
+
+      <p>Adds Esri LULC map layers for 2021 and 2023 to the map.</p>
+
+        <details class="quote">
+          <summary>Source code in <code>carbonarr/carbonarr.py</code></summary>
+          <div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">show_lulc_maps</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Adds Esri LULC map layers for 2021 and 2023 to the map.&quot;&quot;&quot;</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">add_lulc_layer</span><span class="p">(</span><span class="mi">2021</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">add_lulc_layer</span><span class="p">(</span><span class="mi">2023</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">map</span><span class="o">.</span><span class="n">add_layers_control</span><span class="p">()</span>
+</code></pre></div>
+        </details>
+    </div>
+
+  </div>
+
+
+
+
+
+  </div>
+
+    </div>
+
+  </div>
 
 
 
