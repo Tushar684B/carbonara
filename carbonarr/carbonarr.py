@@ -4,6 +4,7 @@ import ipyleaflet
 import geopandas as gpd
 from ipyleaflet import basemaps, GeoJSON
 
+
 class Map(ipyleaflet.Map):
     """A customized map class for displaying geospatial data using ipyleaflet.
     
