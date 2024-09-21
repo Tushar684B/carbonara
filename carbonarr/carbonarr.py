@@ -67,13 +67,12 @@ class Map(ipyleaflet.Map):
             **kwargs: Additional keyword arguments for the GeoJSON layer.
         """
 
-        # import json
-        # if isinstance(data, str):
+        
         with open(filepath, 'r') as f:
             data = json.load(f)
-        
         geo_json = GeoJSON(data=data, name=name, **kwargs)
         self.add(geo_json)
+       
     
     def add_shapefile_layer(self, filepath, **kwargs):
         """Adds a shapefile layer to the map by converting it to GeoJSON.
