@@ -109,3 +109,6 @@ class Map(ipyleaflet.Map):
         self.center = client.center()
         self.zoom = client.default_zoom
         self.scroll_wheel_zoom = True
+    def add_widget(self, widget, position = 'topright', **kwargs):
+        control = ipyleaflet.WidgetControl(widget = widget, position = position)
+        self.add(control)
