@@ -1,8 +1,8 @@
-
 import json
 import ipyleaflet
 import geopandas as gpd
 from ipyleaflet import basemaps, GeoJSON, LayersControl
+from localtileserver import get_leaflet_tile_layer, TileClient
 
 
 class Map(ipyleaflet.Map):
@@ -58,7 +58,6 @@ class Map(ipyleaflet.Map):
         self.add_control(LayersControl(position=position))
 
     def add_geojson_layer(self, filepath, name='geojson', **kwargs):
-
         """Adds a GeoJSON layer to the map from a file.
 
         Args:
@@ -66,13 +65,10 @@ class Map(ipyleaflet.Map):
             name (str): The name of the GeoJSON layer.
             **kwargs: Additional keyword arguments for the GeoJSON layer.
         """
-
-        
         with open(filepath, 'r') as f:
             data = json.load(f)
         geo_json = GeoJSON(data=data, name=name, **kwargs)
         self.add(geo_json)
-       
     
     def add_shapefile_layer(self, filepath, **kwargs):
         """Adds a shapefile layer to the map by converting it to GeoJSON.
@@ -90,3 +86,26 @@ class Map(ipyleaflet.Map):
         # Create a GeoJSON layer and add it to the map
         geo_json = GeoJSON(data=data, **kwargs)
         self.add(geo_json)
+
+    def add_tif_layer(self, filepath, name='TIF Layer',  **kwargs):
+        """Adds a TIF layer to the map using a localtileserver TileClient.
+        
+        Args:
+            filepath (str): Path to the TIF file.
+            name (str): Name of the TIF layer.
+            band (int, optional): The band of the TIF file to display. Defaults to 1.
+            colormap (str, optional): Colormap to apply to the TIF layer. Defaults to 'Greens'.
+        """
+        # Create a TileClient from the TIF file
+        client = TileClient(filepath)
+        # draw_control, roi_control = get_leaflet_roi_controls(tile_client)
+        # Create an ipyleaflet tile layer from the TileClient
+        tif_layer = get_leaflet_tile_layer(client, name=name,**kwargs )
+        
+        # Add the TIF tile layer to the map
+        self.add(tif_layer)
+        
+        # Optional: adjust map's center and zoom to the TIF layer
+        self.center = client.center()
+        self.zoom = client.default_zoom
+        self.scroll_wheel_zoom = True
